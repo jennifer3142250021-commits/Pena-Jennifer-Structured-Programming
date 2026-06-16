@@ -1,23 +1,40 @@
-student={}
-student["name"]=input("Enter yur name:")
-student["programming"]=int(input("programming score (1-10):"))
-student["design"]=int(input("design score (1-10):"))
-student["networking"]=int(input("networking score(1-10):"))
+def get_student_data():
+    student = {}
 
-for key, value in student.items():
-    print(f"{key}:{value}")
+    student["name"] = input("Enter your name: ")
+    student["programming"] = int(input("Programming score (1-10): "))
+    student["design"] = int(input("Design score (1-10): "))
+    student["networking"] = int(input("Networking score (1-10): "))
 
-if student["programming"] > student["design"] and student["programming"] > student["networking"]:
-
-    career = "Software Developer"
-
-elif student["design"] > student["programming"] and student["design"] > student["networking"]:
-
-    career = "UI/UX Designer"
-
-else:
-
-    career = "Network Administrator"
+    return student
 
 
-print("Recommended Career:", career)
+def display_student(student):
+    print("\nStudent Information:")
+    
+    for key, value in student.items():
+        print(f"{key}: {value}")
+
+
+def recommend_career(student):
+    if student["programming"] > student["design"] and student["programming"] > student["networking"]:
+        return "Software Developer"
+
+    elif student["design"] > student["programming"] and student["design"] > student["networking"]:
+        return "UI/UX Designer"
+
+    else:
+        return "Network Administrator"
+
+
+def main():
+    student = get_student_data()
+
+    display_student(student)
+
+    career = recommend_career(student)
+
+    print("\nRecommended Career:", career)
+
+
+main()
